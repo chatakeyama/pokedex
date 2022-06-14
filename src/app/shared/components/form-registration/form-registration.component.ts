@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { PokemonService } from 'src/app/services/pokemon.service';
 import { IPokemon } from '../../interfaces/IPokemon.interface';
 
 @Component({
@@ -24,23 +25,39 @@ export class FormRegistrationComponent implements OnInit {
     velocidadeControl: new FormControl(this.pokemonModel.velocidade, Validators.required),
   });
 
-  constructor() { }
+  constructor(private pokemonService: PokemonService) { }
 
   ngOnInit(): void {
   }
 
-  get nome() { return this.registrationForm.get('nomeControl'); }
-  get descricao() { return this.registrationForm.get('descricaoControl'); }
-  get altura() { return this.registrationForm.get('alturaControl'); }
-  get peso() { return this.registrationForm.get('pesoControl'); }
-  get categoria() { return this.registrationForm.get('categoriaControl'); }
-  get habilidade() { return this.registrationForm.get('habilidadeControl'); }
-  get ataque() { return this.registrationForm.get('ataqueControl'); }
-  get defesa() { return this.registrationForm.get('defesaControl'); }
-  get velocidade() { return this.registrationForm.get('velocidadeControl'); }
+  get nome() { return this.registrationForm.get('nomeControl') }
+  get descricao() { return this.registrationForm.get('descricaoControl') }
+  get altura() { return this.registrationForm.get('alturaControl') }
+  get peso() { return this.registrationForm.get('pesoControl') }
+  get categoria() { return this.registrationForm.get('categoriaControl') }
+  get habilidade() { return this.registrationForm.get('habilidadeControl') }
+  get ataque() { return this.registrationForm.get('ataqueControl') }
+  get defesa() { return this.registrationForm.get('defesaControl') }
+  get velocidade() { return this.registrationForm.get('velocidadeControl') }
+
+  bindDataFormToDataModel = (): void => {
+    this.pokemonModel.nome = this.nome?.value
+    this.pokemonModel.descricao = this.descricao?.value
+    this.pokemonModel.altura = this.altura?.value
+    this.pokemonModel.peso = this.peso?.value
+    this.pokemonModel.categoria = this.categoria?.value
+    this.pokemonModel.habilidade = this.habilidade?.value
+    this.pokemonModel.ataque = this.ataque?.value
+    this.pokemonModel.defesa = this.ataque?.value
+    this.pokemonModel.velocidade = this.velocidade?.value
+  }
 
   onSubmit = () => {
-    console.log(this.registrationForm.value)
+    this.bindDataFormToDataModel()
+    this.pokemonService.add(this.pokemonModel).subscribe( result =>
+      console.log('Adicionado'),
+      error => console.log('Erro')
+    )
   }
 
 }
