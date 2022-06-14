@@ -16,4 +16,8 @@ export class PokemonService {
     return this.http.post(`${this.urlApi}/pokemons`, pokemon)
   }
 
+  getAll = (): Observable<any> => {
+    return this.http.get(`${this.urlApi}/pokemons`)
+  }
+
 }
