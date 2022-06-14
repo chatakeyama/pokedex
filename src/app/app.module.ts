@@ -69,7 +69,8 @@ import { PokedexComponent } from './shared/components/pokedex/pokedex.component'
     BrowserAnimationsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut: 8000}),
     MatSidenavModule,
     A11yModule,
     ClipboardModule,

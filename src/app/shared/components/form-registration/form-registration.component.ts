@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { IPokemon } from '../../interfaces/IPokemon.interface';
 
@@ -25,7 +26,10 @@ export class FormRegistrationComponent implements OnInit {
     velocidadeControl: new FormControl(this.pokemonModel.velocidade, Validators.required),
   });
 
-  constructor(private pokemonService: PokemonService) { }
+  constructor(
+    private pokemonService: PokemonService, 
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
   }
@@ -55,8 +59,8 @@ export class FormRegistrationComponent implements OnInit {
   onSubmit = () => {
     this.bindDataFormToDataModel()
     this.pokemonService.add(this.pokemonModel).subscribe( result =>
-      console.log('Adicionado'),
-      error => console.log('Erro')
+      this.toastr.success('Pokemon cadastrado com sucesso'),
+      error => this.toastr.error('Não foi possível fazer o cadastro')
     )
   }
 
