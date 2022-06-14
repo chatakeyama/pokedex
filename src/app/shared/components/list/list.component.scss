@@ -1,0 +1,31 @@
+.list-table {
+    width: 100%;
+}
+
+.mat-column-pokemon-id {
+    width: 3.2rem;
+    border-right: 0.1rem solid currentColor;
+    padding-right: 2.4rem;
+    text-align: center;
+}
+
+.mat-column-pokemon-nome {
+    padding-left: 1.6rem;
+    font-size: 1.6rem;
+}
+
+.mat-column-pokemon-descricao {
+    padding: 2rem;
+    font-size: 1rem;
+}
+
+.mat-row .mat-cell {
+    border-bottom: 1px solid transparent;
+    border-top: 1px solid transparent;
+    cursor: pointer;
+}
+
+.mat-row:hover .mat-cell {
+    border-color: currentColor;
+}
+
