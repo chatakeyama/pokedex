@@ -49,12 +49,14 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
+import { FormRegistrationComponent } from './shared/components/form-registration/form-registration.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    SidenavComponent
+    SidenavComponent,
+    FormRegistrationComponent
   ],
   imports: [
     BrowserModule,
