@@ -4,8 +4,9 @@ import { FormRegistrationComponent } from './shared/components/form-registration
 import { ListComponent } from './shared/components/list/list.component';
 
 const routes: Routes = [
-  { path: '', component: FormRegistrationComponent },
-  { path: 'list', component: ListComponent }
+  { path: 'add', component: FormRegistrationComponent },
+  { path: 'list', component: ListComponent },
+  { path: '', redirectTo: '/list', pathMatch: 'full'},
 ];
 
 @NgModule({
