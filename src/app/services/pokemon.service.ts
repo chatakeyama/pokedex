@@ -20,4 +20,8 @@ export class PokemonService {
     return this.http.get(`${this.urlApi}/pokemons`)
   }
 
+  getById = (id: number): Observable<any> => {
+    return this.http.get(`${this.urlApi}/pokemons/${id}`)
+  }
+
 }

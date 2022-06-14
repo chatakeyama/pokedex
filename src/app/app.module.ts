@@ -52,6 +52,7 @@ import { MatTreeModule } from '@angular/material/tree';
 import { OverlayModule } from '@angular/cdk/overlay';
 import { FormRegistrationComponent } from './shared/components/form-registration/form-registration.component';
 import { ListComponent } from './shared/components/list/list.component';
+import { PokedexComponent } from './shared/components/pokedex/pokedex.component';
 
 
 @NgModule({
@@ -59,7 +60,8 @@ import { ListComponent } from './shared/components/list/list.component';
     AppComponent,
     SidenavComponent,
     FormRegistrationComponent,
-    ListComponent
+    ListComponent,
+    PokedexComponent
   ],
   imports: [
     BrowserModule,
