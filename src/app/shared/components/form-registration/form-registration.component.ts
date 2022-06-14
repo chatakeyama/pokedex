@@ -12,6 +12,7 @@ import { IPokemon } from '../../interfaces/IPokemon.interface';
 export class FormRegistrationComponent implements OnInit {
 
   pokemonModel = {} as IPokemon
+  loading: boolean = false
 
   registrationForm = new FormGroup({
     nomeControl: new FormControl(this.pokemonModel.nome, [
@@ -27,7 +28,7 @@ export class FormRegistrationComponent implements OnInit {
   });
 
   constructor(
-    private pokemonService: PokemonService, 
+    private pokemonService: PokemonService,
     private toastr: ToastrService
   ) { }
 
@@ -57,10 +58,16 @@ export class FormRegistrationComponent implements OnInit {
   }
 
   onSubmit = () => {
+    this.loading = true
     this.bindDataFormToDataModel()
-    this.pokemonService.add(this.pokemonModel).subscribe( result =>
-      this.toastr.success('Pokemon cadastrado com sucesso'),
-      error => this.toastr.error('Não foi possível fazer o cadastro')
+    this.pokemonService.add(this.pokemonModel).subscribe(result => {
+      this.loading = false
+      this.toastr.success('Pokemon cadastrado com sucesso')
+    },
+      error => {
+        this.loading = false
+        this.toastr.error('Não foi possível fazer o cadastro')
+      }
     )
   }
 

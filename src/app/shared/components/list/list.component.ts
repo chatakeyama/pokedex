@@ -12,6 +12,7 @@ export class ListComponent implements OnInit {
 
   displayedColumns: string[] = ['pokemon-id', 'pokemon-nome', 'pokemon-descricao']
   dataSource: IPokemon[] = []
+  loading: boolean = true
 
   constructor(private pokemonService: PokemonService, private router: Router) { }
 
@@ -20,9 +21,13 @@ export class ListComponent implements OnInit {
   }
 
   getAllPokemons = () => {
-    this.pokemonService.getAll().subscribe(result => {
-      this.dataSource = result
-    })
+    this.pokemonService.getAll().subscribe(
+      result => {
+        this.loading = false
+        this.dataSource = result
+      }, error => {
+        this.loading = false
+      })
   }
 
   onClickRow(row: any) {
