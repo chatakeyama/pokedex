@@ -1,4 +1,4 @@
-@import "./../node_modules/simplegrid/simple-grid.scss";
+@import "./assets/styles/breakpoints.scss";
 
 * {
     margin: 0;
@@ -9,12 +9,16 @@
 }
 
 html {
-    font-size: 62, 5%; // 1rem = 10px
+    font-size: 62,5%; // 1rem = 10px
 }
 
-//Breakpoints
-$bp_xs: 22.5em; //360px
-$bp_sm: 36em; //576px
-$bp_md: 48em; //768px
-$bp_lg: 62em; //992px
-$bp_xl: 75em; //1200px
+.container {
+    margin: auto;
+    width: 60%;
+    @media screen and (max-width: $bp_md) {
+        width: 70%;
+    }
+    @media screen and (max-width: $bp_sm) {
+        width: 80%;
+    }
+}

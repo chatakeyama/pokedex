@@ -1,12 +1,13 @@
+
 <form [formGroup]="registrationForm">
     <div class="row">
-        <div class="col-4">
+        <div class="col-sm-12">
             <h2>{{ title }}</h2>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-4">
+        <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Nome</mat-label>
                 <input matInput class="form-control" formControlName="nome" required>
@@ -15,7 +16,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-12">
+        <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Descrição</mat-label>
                 <textarea matInput class="form-control" formControlName="descricao" required></textarea>
@@ -25,14 +26,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-2">
+        <div class="col-md-2">
             <mat-form-field appearance="outline">
                 <mat-label>Altura (m)</mat-label>
                 <input type="number" min="0" matInput class="form-control" formControlName="altura" required>
                 <mat-error *ngIf="altura?.invalid && (altura?.dirty || altura?.touched)">Obrigatório</mat-error>
             </mat-form-field>
         </div>
-        <div class="col-2">
+        <div class="col-md-2">
             <mat-form-field appearance="outline" class="space-letf-xs">
                 <mat-label>Peso (Kg)</mat-label>
                 <input type="number" min="0" matInput class="form-control" formControlName="peso" required>
@@ -41,7 +42,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-4">
+        <div class="col-md-4">
             <mat-form-field appearance="outline" class="space-letf-xs">
                 <mat-label>Categoria</mat-label>
                 <input matInput class="form-control" formControlName="categoria" required>
@@ -51,7 +52,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-5">
+        <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Habilidade</mat-label>
                 <input matInput class="form-control" formControlName="habilidade" required>
@@ -61,7 +62,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-5">
+        <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Ataque</mat-label>
                 <input type="number" min="0" matInput class="form-control" formControlName="ataque" required>
@@ -70,7 +71,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-5">
+        <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Defesa</mat-label>
                 <input type="number" min="0" matInput class="form-control" formControlName="defesa" required>
@@ -79,7 +80,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-2">
+        <div class="col-md-2">
             <mat-form-field appearance="outline">
                 <mat-label>Velocidade</mat-label>
                 <input type="number" min="0" matInput class="form-control" formControlName="velocidade" required>
@@ -90,7 +91,7 @@
     </div>
 
     <div class="row">
-        <div class="col-2">
+        <div class="col-md-2">
             <button mat-flat-button [disabled]="!registrationForm.valid" (click)="onSubmit()">Salvar</button>
         </div>
     </div>
