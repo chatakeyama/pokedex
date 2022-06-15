@@ -1,5 +1,17 @@
 .list-table {
     width: 100%;
+
+    td {
+        font-size: 1.6rem;
+    }
+
+    th {
+        font-size: 1.8rem;
+    }
+
+    &__second-column{
+        font-size: 2.2rem!important;
+    }
 }
 
 .mat-column-pokemon-id {

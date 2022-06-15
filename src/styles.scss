@@ -9,16 +9,16 @@
 }
 
 html {
-    font-size: 62,5%; // 1rem = 10px
+    font-size: 62.5%; // 1rem = 10px
 }
 
 .container {
     margin: auto;
     width: 60%;
     @media screen and (max-width: $bp_md) {
-        width: 70%;
+        width: 80%;
     }
     @media screen and (max-width: $bp_sm) {
-        width: 80%;
+        width: 90%;
     }
 }

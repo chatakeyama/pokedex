@@ -9,18 +9,18 @@
     background: #eee;
 
     &__main {
-        margin-top: 5rem;
-        margin-bottom: 9rem;
+        margin-top: 8rem;
+        margin-bottom: 15rem;
     }
 
     &__brand {
         text-align: center;
-        margin-top: 3rem;
-        margin-bottom: 2rem;
+        margin-top: 4rem;
+        margin-bottom: 3rem;
     }
 
     &__side-menu {
-         width: 14rem;
+         width: 22rem;
         @media screen and (max-width: $bp_md) {
             display: none;
         }
@@ -33,7 +33,7 @@
     &__bottom-bar {
         position: fixed;
         bottom: 0;
-        height: 7rem;
+        height: 10rem;
         @media screen and (min-width: $bp_md) {
             display: none;
         }

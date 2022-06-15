@@ -1,10 +1,10 @@
 <ng-container *ngIf="!serverError; else templateMessage">
     <mat-card class="card">
         <mat-card-subtitle>Pokédex</mat-card-subtitle>
-        <mat-card-title>{{ pokemon.nome }}</mat-card-title>
+        <mat-card-title class="card__title">{{ pokemon.nome }}</mat-card-title>
         <mat-card-content>
-            <section>
-                <p>{{ pokemon.descricao }}</p>
+            <p class="card__description">{{ pokemon.descricao }}</p>
+            <section class="card__features">
                 <div class="row">
                     <div class="col-xs-5 col-md-3">
                         <p>Altura: </p>
