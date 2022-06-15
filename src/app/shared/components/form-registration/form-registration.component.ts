@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { IPokemon } from '../../interfaces/IPokemon.interface';
@@ -11,28 +12,38 @@ import { IPokemon } from '../../interfaces/IPokemon.interface';
 })
 export class FormRegistrationComponent implements OnInit {
 
+  title: string = 'Cadastrar pokémon'
   pokemonModel = {} as IPokemon
   loading: boolean = false
+  pokemonId: number = 0
 
   registrationForm = new FormGroup({
-    nomeControl: new FormControl(this.pokemonModel.nome, [
+    nome: new FormControl(this.pokemonModel.nome, [
       Validators.required, Validators.minLength(4)]),
-    descricaoControl: new FormControl(this.pokemonModel.descricao, Validators.required),
-    alturaControl: new FormControl(this.pokemonModel.altura, Validators.required),
-    pesoControl: new FormControl(this.pokemonModel.peso, Validators.required),
-    categoriaControl: new FormControl(this.pokemonModel.categoria, Validators.required),
-    habilidadeControl: new FormControl(this.pokemonModel.habilidade, Validators.required),
-    ataqueControl: new FormControl(this.pokemonModel.ataque, Validators.required),
-    defesaControl: new FormControl(this.pokemonModel.defesa, Validators.required),
-    velocidadeControl: new FormControl(this.pokemonModel.velocidade, Validators.required),
+    descricao: new FormControl(this.pokemonModel.descricao, Validators.required),
+    altura: new FormControl(this.pokemonModel.altura, Validators.required),
+    peso: new FormControl(this.pokemonModel.peso, Validators.required),
+    categoria: new FormControl(this.pokemonModel.categoria, Validators.required),
+    habilidade: new FormControl(this.pokemonModel.habilidade, Validators.required),
+    ataque: new FormControl(this.pokemonModel.ataque, Validators.required),
+    defesa: new FormControl(this.pokemonModel.defesa, Validators.required),
+    velocidade: new FormControl(this.pokemonModel.velocidade, Validators.required),
   });
 
   constructor(
     private pokemonService: PokemonService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private route: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe(params => {
+      this.pokemonId = params['id']
+      if (this.pokemonId) {
+        this.title = 'Editar pokémon'
+        this.getPokemon(this.pokemonId);
+      }
+    })
   }
 
   get nome() { return this.registrationForm.get('nomeControl') }
@@ -57,18 +68,47 @@ export class FormRegistrationComponent implements OnInit {
     this.pokemonModel.velocidade = this.velocidade?.value
   }
 
-  onSubmit = () => {
-    this.loading = true
-    this.bindDataFormToDataModel()
+  getPokemon(id: number) {
+    this.pokemonService.getById(this.pokemonId).subscribe(result => {
+      this.pokemonModel = result
+      this.registrationForm.patchValue(this.pokemonModel)
+      console.log( this.registrationForm.value)
+    })
+  }
+
+  create = () => {
     this.pokemonService.add(this.pokemonModel).subscribe(result => {
       this.loading = false
-      this.toastr.success('Pokemon cadastrado com sucesso')
+      this.toastr.success('Pokemon cadastrado com sucesso.')
     },
       error => {
         this.loading = false
-        this.toastr.error('Não foi possível fazer o cadastro')
+        this.toastr.error('Não foi possível fazer o cadastro.')
       }
     )
+  }
+
+  update = () => {
+    this.registrationForm.value.id = this.pokemonId
+    this.pokemonService.update(this.registrationForm.value).subscribe(result => {
+      this.loading = false
+      this.toastr.success('Pokemon editado com sucesso.')
+    },
+      error => {
+        this.loading = false
+        this.toastr.error('Não foi possível fazer a edição.')
+      }
+    )
+  }
+
+  onSubmit = () => {
+    this.loading = true
+    this.bindDataFormToDataModel()
+    if (this.pokemonId) {
+      this.update()
+    } else {
+      this.create()
+    }
   }
 
 }

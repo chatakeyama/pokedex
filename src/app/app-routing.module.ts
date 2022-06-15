@@ -6,6 +6,7 @@ import { PokedexComponent } from './shared/components/pokedex/pokedex.component'
 
 const routes: Routes = [
   { path: 'add', component: FormRegistrationComponent },
+  { path: 'edit/:id', component: FormRegistrationComponent },
   { path: 'list', component: ListComponent },
   { path: 'pokedex/:id', component: PokedexComponent },
   { path: '', redirectTo: '/list', pathMatch: 'full' },

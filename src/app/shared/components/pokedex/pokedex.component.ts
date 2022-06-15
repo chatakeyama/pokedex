@@ -57,4 +57,8 @@ export class PokedexComponent implements OnInit {
     )
   }
 
+  editPokemon = (): void => {
+    this.router.navigate([`/edit/${this.pokemonId}`])
+  }
+
 }

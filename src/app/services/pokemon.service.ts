@@ -16,6 +16,10 @@ export class PokemonService {
     return this.http.post(`${this.urlApi}/pokemons`, pokemon)
   }
 
+  update = (pokemon: IPokemon): Observable<any> => {
+    return this.http.put(`${this.urlApi}/pokemons/${pokemon.id}`, pokemon)
+  }
+
   delete = (id: number): Observable<any> => {
     return this.http.delete(`${this.urlApi}/pokemons/${id}`)
   }
