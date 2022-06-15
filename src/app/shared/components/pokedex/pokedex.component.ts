@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { switchMap } from 'rxjs/operators';
-import { IPokemon } from '../../interfaces/IPokemon.interface';
 import { PokemonModel } from '../../models/Pokemon.model';
 import { ToastrService } from 'ngx-toastr';
 
@@ -21,7 +20,8 @@ export class PokedexComponent implements OnInit {
   constructor(
     private pokemonService: PokemonService,
     private route: ActivatedRoute,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -32,17 +32,29 @@ export class PokedexComponent implements OnInit {
       result => {
         this.loading = false
         this.pokemon = result
+        this.pokemonId = result.id
       },
       error => {
         this.loading = false
         this.serverError = true
-        this.toastr.error('Não foi possível comunicar-se com o servidor')
+        this.toastr.error('Não foi possível comunicar-se com o servidor.')
       }
     )
   }
 
   getSequenceOfNumbers(n: any): Array<number> {
     return Array(n);
+  }
+
+  removePokemon = () => {
+    this.pokemonService.delete(this.pokemonId).subscribe(
+      result => {
+        this.toastr.success('Pokémon removido com sucesso.')
+        this.router.navigate(['/list'])
+      }, error => {
+        this.toastr.error('Não foi possível deletar. Tente novamente mais tarde.')
+      }
+    )
   }
 
 }

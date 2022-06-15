@@ -16,6 +16,10 @@ export class PokemonService {
     return this.http.post(`${this.urlApi}/pokemons`, pokemon)
   }
 
+  delete = (id: number): Observable<any> => {
+    return this.http.delete(`${this.urlApi}/pokemons/${id}`)
+  }
+
   getAll = (): Observable<any> => {
     return this.http.get(`${this.urlApi}/pokemons`)
   }
