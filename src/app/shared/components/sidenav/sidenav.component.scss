@@ -8,6 +8,7 @@
 
     &__main {
         margin-top: 5rem;
+        margin-bottom: 9rem;
     }
 
     &__brand {
@@ -18,9 +19,25 @@
 
     &__side-menu {
         width: 15rem;
+        @media screen and (max-width: 48em) {
+            display: none;
+        }
     }
 
     &__item {
-        padding-left: 2rem!important;
+        padding-left: 2rem !important;
+    }
+
+    &__bottom-bar {
+        position: fixed;
+        bottom: 0;
+        height: 7rem;
+        @media screen and (min-width: 48em) {
+            display: none;
+        }
+    }
+
+    &__buttons-bar {
+        width: 100%;
     }
 }

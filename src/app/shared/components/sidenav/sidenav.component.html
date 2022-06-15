@@ -14,5 +14,12 @@
         <div class="container sidenav-container__main">
             <router-outlet></router-outlet>
         </div>
+        <mat-toolbar class="sidenav-container__bottom-bar">
+            <mat-tab-group (selectedTabChange)="navigateTo($event)" 
+            [selectedIndex]="getCurrentRouteIndex()" mat-stretch-tabs class="sidenav-container__buttons-bar">
+                <mat-tab [label]="ADD_LABEL"></mat-tab>
+                <mat-tab [label]="LIST_LABEL"></mat-tab>
+            </mat-tab-group>
+        </mat-toolbar>
     </mat-drawer-content>
 </mat-drawer-container>
