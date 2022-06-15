@@ -1,5 +1,15 @@
 @import "../../../../assets/styles/breakpoints.scss";
 
+
+@mixin subcard($color) {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    background-color: $color;
+    color: #fff;
+    padding: 1.5rem;
+    border-radius: 0.4rem;
+}
+
 .mat-card-subtitle,
 .mat-card-content {
     font-size: 2rem;
@@ -16,19 +26,11 @@
     padding: 5rem;
 
     &__stats {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        background: #d5a100;
-        color: #fff;
-        padding: 1.5rem;
+        @include subcard(#d5a100);
     }
 
     &__features {
-        margin-top: 2rem;
-        margin-bottom: 2rem;
-        padding: 1.5rem;
-        background: #0075be;
-        color: #fff;
+        @include subcard(#0075be);
     }
 
     &__title {
