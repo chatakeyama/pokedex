@@ -7,7 +7,7 @@
     </div>
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <mat-form-field appearance="outline">
                 <mat-label>Nome</mat-label>
                 <input matInput class="form-control" formControlName="nome" required>
@@ -16,7 +16,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-12">
             <mat-form-field appearance="outline">
                 <mat-label>Descrição</mat-label>
                 <textarea matInput class="form-control" formControlName="descricao" required></textarea>
@@ -26,14 +26,14 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-6">
             <mat-form-field appearance="outline">
                 <mat-label>Altura (m)</mat-label>
                 <input type="number" min="0" matInput class="form-control" formControlName="altura" required>
                 <mat-error *ngIf="altura?.invalid && (altura?.dirty || altura?.touched)">Obrigatório</mat-error>
             </mat-form-field>
         </div>
-        <div class="col-md-2">
+        <div class="col-md-6">
             <mat-form-field appearance="outline" class="space-letf-xs">
                 <mat-label>Peso (Kg)</mat-label>
                 <input type="number" min="0" matInput class="form-control" formControlName="peso" required>
@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <mat-form-field appearance="outline" class="space-letf-xs">
                 <mat-label>Categoria</mat-label>
                 <input matInput class="form-control" formControlName="categoria" required>
@@ -50,9 +50,7 @@
                 </mat-error>
             </mat-form-field>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <mat-form-field appearance="outline">
                 <mat-label>Habilidade</mat-label>
                 <input matInput class="form-control" formControlName="habilidade" required>
@@ -69,8 +67,7 @@
                 <mat-error *ngIf="ataque?.invalid && (ataque?.dirty || ataque?.touched)">Obrigatório</mat-error>
             </mat-form-field>
         </div>
-    </div>
-    <div class="row">
+
         <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Defesa</mat-label>
@@ -78,9 +75,8 @@
                 <mat-error *ngIf="defesa?.invalid && (defesa?.dirty || defesa?.touched)">Obrigatório</mat-error>
             </mat-form-field>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
+
+        <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Velocidade</mat-label>
                 <input type="number" min="0" matInput class="form-control" formControlName="velocidade" required>
