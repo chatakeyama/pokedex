@@ -5,10 +5,38 @@
         <mat-card-content>
             <section>
                 <p>{{ pokemon.descricao }}</p>
-                <p>{{ pokemon.altura }}m</p>
-                <p>Peso: {{ pokemon.peso }}Kg</p>
-                <p>Categoria: {{ pokemon.categoria }}</p>
-                <p>Habilidade: {{ pokemon.habilidade }}</p>
+                <div class="row">
+                    <div class="col-2">
+                        <p>Altura: </p>
+                    </div>
+                    <div class="col-10">
+                        <p>{{ pokemon.altura }}m</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <p>Peso: </p>
+                    </div>
+                    <div class="col-10">
+                        <p>{{ pokemon.peso }}Kg</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <p>Categoria:</p>
+                    </div>
+                    <div class="col-10">
+                        <p>{{ pokemon.categoria }}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <p>Habilidade: </p>
+                    </div>
+                    <div class="col-10">
+                        <p>{{ pokemon.habilidade }}</p>
+                    </div>
+                </div>
             </section>
             <section class="stats">
                 <div class="row">
