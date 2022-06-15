@@ -4,6 +4,7 @@ import { PokemonService } from 'src/app/services/pokemon.service';
 import { switchMap } from 'rxjs/operators';
 import { IPokemon } from '../../interfaces/IPokemon.interface';
 import { PokemonModel } from '../../models/Pokemon.model';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-pokedex',
@@ -15,11 +16,13 @@ export class PokedexComponent implements OnInit {
   pokemonId: number = 0
   pokemon = new PokemonModel()
   loading: boolean = true
+  serverError: boolean = false
 
   constructor(
     private pokemonService: PokemonService,
-    private route: ActivatedRoute) {
-  }
+    private route: ActivatedRoute,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
 
@@ -32,7 +35,8 @@ export class PokedexComponent implements OnInit {
       },
       error => {
         this.loading = false
-        console.log("Erro")
+        this.serverError = true
+        this.toastr.error('Não foi possível comunicar-se com o servidor')
       }
     )
   }

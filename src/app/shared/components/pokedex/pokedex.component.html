@@ -1,51 +1,57 @@
-<mat-card class="example-card">
-    <mat-card-subtitle>Pokédex</mat-card-subtitle>
-    <mat-card-title>{{ pokemon.nome }}</mat-card-title>
-    <mat-card-content>
-        <section>
-            <p>{{ pokemon.descricao }}</p>
-            <p>{{ pokemon.altura }}m</p>
-            <p>Peso: {{ pokemon.peso }}Kg</p>
-            <p>Categoria: {{ pokemon.categoria }}</p>
-            <p>Habilidade: {{ pokemon.habilidade }}</p>
-        </section>
-        <section class="stats">
-            <div class="row">
-                <div class="col-2">
-                    <p>Ataque</p>
+<ng-container *ngIf="!serverError; else templateMessage">
+    <mat-card class="example-card">
+        <mat-card-subtitle>Pokédex</mat-card-subtitle>
+        <mat-card-title>{{ pokemon.nome }}</mat-card-title>
+        <mat-card-content>
+            <section>
+                <p>{{ pokemon.descricao }}</p>
+                <p>{{ pokemon.altura }}m</p>
+                <p>Peso: {{ pokemon.peso }}Kg</p>
+                <p>Categoria: {{ pokemon.categoria }}</p>
+                <p>Habilidade: {{ pokemon.habilidade }}</p>
+            </section>
+            <section class="stats">
+                <div class="row">
+                    <div class="col-2">
+                        <p>Ataque</p>
+                    </div>
+                    <div class="col-10">
+                        <span *ngFor="let n of getSequenceOfNumbers(pokemon?.ataque)" class="dot"></span>
+                    </div>
                 </div>
-                <div class="col-10">
-                    <span *ngFor="let n of getSequenceOfNumbers(pokemon?.ataque)" class="dot"></span>
+                <div class="row">
+                    <div class="col-2">
+                        <p>Defesa</p>
+                    </div>
+                    <div class="col-10">
+                        <span *ngFor="let n of getSequenceOfNumbers(pokemon?.defesa)" class="dot"></span> <span
+                            class="dot"></span>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <p>Defesa</p>
+                <div class="row">
+                    <div class="col-2">
+                        <p>Velocidade</p>
+                    </div>
+                    <div class="col-10">
+                        <span *ngFor="let n of getSequenceOfNumbers(pokemon?.velocidade)" class="dot"></span> <span
+                            class="dot"></span>
+                    </div>
                 </div>
-                <div class="col-10">
-                    <span *ngFor="let n of getSequenceOfNumbers(pokemon?.defesa)" class="dot"></span> <span
-                        class="dot"></span>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-2">
-                    <p>Velocidade</p>
-                </div>
-                <div class="col-10">
-                    <span *ngFor="let n of getSequenceOfNumbers(pokemon?.velocidade)" class="dot"></span> <span
-                        class="dot"></span>
-                </div>
-            </div>
-        </section>
-    </mat-card-content>
-    <mat-divider inset></mat-divider>
-    <mat-card-actions>
-        <button mat-button>Remover</button>
-        <button mat-button>Editar</button>
-    </mat-card-actions>
-    <mat-card-footer>
-    </mat-card-footer>
-</mat-card>
+            </section>
+        </mat-card-content>
+        <mat-divider inset></mat-divider>
+        <mat-card-actions>
+            <button mat-button>Remover</button>
+            <button mat-button>Editar</button>
+        </mat-card-actions>
+        <mat-card-footer>
+        </mat-card-footer>
+    </mat-card>
+</ng-container>
+
+<ng-template #templateMessage>
+    <mat-card>Não foi possível carregar os dados do pokémon</mat-card>
+</ng-template>
 
 <ng-container *ngIf="loading">
     <app-loading></app-loading>
