@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.emptyDataSourceMessage {
+    font-size: 1.7rem;
+}
+
 .mat-column-pokemon-id {
     width: 3.2rem;
     border-right: 0.1rem solid currentColor;
@@ -28,4 +32,3 @@
 .mat-row:hover .mat-cell {
     border-color: currentColor;
 }
-

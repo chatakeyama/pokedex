@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { IPokemon } from '../../interfaces/IPokemon.interface';
 @Component({
@@ -14,7 +15,11 @@ export class ListComponent implements OnInit {
   dataSource: IPokemon[] = []
   loading: boolean = true
 
-  constructor(private pokemonService: PokemonService, private router: Router) { }
+  constructor(
+    private pokemonService: PokemonService,
+    private router: Router,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit(): void {
     this.getAllPokemons()
@@ -27,6 +32,7 @@ export class ListComponent implements OnInit {
         this.dataSource = result
       }, error => {
         this.loading = false
+        this.toastr.error('Não foi possível comunicar-se com o servidor')
       })
   }
 
@@ -34,4 +40,7 @@ export class ListComponent implements OnInit {
     this.router.navigate([`/pokedex/${row.id}`])
   }
 
+  isDataSourceNotEmpty = (): boolean => {
+    return this.dataSource.length > 0
+  }
 }
