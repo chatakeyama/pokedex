@@ -72,7 +72,6 @@ export class FormRegistrationComponent implements OnInit {
     this.pokemonService.getById(this.pokemonId).subscribe(result => {
       this.pokemonModel = result
       this.registrationForm.patchValue(this.pokemonModel)
-      console.log( this.registrationForm.value)
     })
   }
 
