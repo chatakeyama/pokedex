@@ -6,7 +6,7 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background: #eee;
+    background: #DFDFDF;
 
     &__main {
         margin-top: 8rem;
@@ -17,17 +17,29 @@
         text-align: center;
         margin-top: 4rem;
         margin-bottom: 3rem;
+        background-color: #FB1B1B ;
+        padding: 4rem;
     }
 
     &__side-menu {
          width: 22rem;
+         background-color: #000000;
+         color: #FFFFFF;
+
         @media screen and (max-width: $bp_md) {
             display: none;
         }
     }
 
     &__item {
+        color: #FFFFFF;
         padding-left: 2rem !important;
+        font-size: 1.9rem;
+    }
+
+    &__item:hover {
+        background-color: #DFDFDF;
+        color: #000000;
     }
 
     &__bottom-bar {
