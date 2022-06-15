@@ -14,6 +14,7 @@ export class PokedexComponent implements OnInit {
 
   pokemonId: number = 0
   pokemon = new PokemonModel()
+  loading: boolean = true
 
   constructor(
     private pokemonService: PokemonService,
@@ -26,16 +27,14 @@ export class PokedexComponent implements OnInit {
       switchMap(value => this.pokemonService.getById(value.id))
     ).subscribe(
       result => {
+        this.loading = false
         this.pokemon = result
       },
       error => {
+        this.loading = false
         console.log("Erro")
       }
     )
-  }
-
-  getPokemon = () => {
-    this.pokemonService.getById(this.pokemonId)
   }
 
   getSequenceOfNumbers(n: any): Array<number> {
