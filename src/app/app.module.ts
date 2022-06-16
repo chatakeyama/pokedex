@@ -54,6 +54,8 @@ import { FormRegistrationComponent } from './shared/components/form-registration
 import { ListComponent } from './shared/components/list/list.component';
 import { PokedexComponent } from './shared/components/pokedex/pokedex.component';
 import { LoadingComponent } from './shared/components/loading/loading.component';
+import { OnlyNumbersDirective } from './shared/directives/only-numbers.directive';
+import { OnlyNumbersAndDotsDirective } from './shared/directives/only-numbers-and-dots.directive';
 
 
 @NgModule({
@@ -63,7 +65,9 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
     FormRegistrationComponent,
     ListComponent,
     PokedexComponent,
-    LoadingComponent
+    LoadingComponent,
+    OnlyNumbersDirective,
+    OnlyNumbersAndDotsDirective
   ],
   imports: [
     BrowserModule,

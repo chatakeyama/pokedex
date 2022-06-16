@@ -28,14 +28,16 @@
         <div class="col-md-6">
             <mat-form-field appearance="outline">
                 <mat-label>Altura (m)</mat-label>
-                <input type="number" min="0" matInput class="form-control" formControlName="altura" required>
+                <input type="number" min="0" onlyNumbersAndDots matInput class="form-control" formControlName="altura"
+                    required>
                 <mat-error *ngIf="altura?.invalid && (altura?.dirty || altura?.touched)">Obrigatório</mat-error>
             </mat-form-field>
         </div>
         <div class="col-md-6">
             <mat-form-field appearance="outline" class="space-letf-xs">
                 <mat-label>Peso (Kg)</mat-label>
-                <input type="number" min="0" matInput class="form-control" formControlName="peso" required>
+                <input type="number" min="0" onlyNumbersAndDots matInput class="form-control" formControlName="peso"
+                    required>
                 <mat-error *ngIf="peso?.invalid && (peso?.dirty || peso?.touched)">Obrigatório</mat-error>
             </mat-form-field>
         </div>
@@ -62,21 +64,24 @@
         <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Ataque</mat-label>
-                <input type="number" min="0" max="15" matInput class="form-control" formControlName="ataque" placeholder="máximo 15" required>
-                <mat-error *ngIf="ataque?.invalid && (ataque?.dirty || ataque?.touched)">Obrigatório</mat-error>
+                <input type="number" onlyNumbers matInput class="form-control" formControlName="ataque"
+                    placeholder="Valor máximo 15" required>
+                <mat-error *ngIf="ataque?.invalid && (ataque?.dirty || ataque?.touched)"></mat-error>
             </mat-form-field>
         </div>
         <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Defesa</mat-label>
-                <input type="number" min="0" max="15" matInput class="form-control" formControlName="defesa" placeholder="máximo 15" required>
+                <input type="number" onlyNumbers min="0" max="15" matInput class="form-control" formControlName="defesa"
+                    placeholder="Valor máximo 15" required>
                 <mat-error *ngIf="defesa?.invalid && (defesa?.dirty || defesa?.touched)">Obrigatório</mat-error>
             </mat-form-field>
         </div>
         <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Velocidade</mat-label>
-                <input type="number" min="0" max="15" matInput class="form-control" formControlName="velocidade" placeholder="máximo 15" required>
+                <input type="number" onlyNumbers min="0" max="15" matInput class="form-control"
+                    formControlName="velocidade" placeholder="Valor máximo 15" required>
                 <mat-error *ngIf="velocidade?.invalid && (velocidade?.dirty || velocidade?.touched)">Obrigatório
                 </mat-error>
             </mat-form-field>
