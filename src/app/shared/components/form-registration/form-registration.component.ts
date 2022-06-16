@@ -56,27 +56,15 @@ export class FormRegistrationComponent implements OnInit {
   get defesa() { return this.registrationForm.get('defesaControl') }
   get velocidade() { return this.registrationForm.get('velocidadeControl') }
 
-  bindDataFormToDataModel = (): void => {
-    this.pokemonModel.nome = this.nome?.value
-    this.pokemonModel.descricao = this.descricao?.value
-    this.pokemonModel.altura = this.altura?.value
-    this.pokemonModel.peso = this.peso?.value
-    this.pokemonModel.categoria = this.categoria?.value
-    this.pokemonModel.habilidade = this.habilidade?.value
-    this.pokemonModel.ataque = this.ataque?.value
-    this.pokemonModel.defesa = this.ataque?.value
-    this.pokemonModel.velocidade = this.velocidade?.value
-  }
-
-  getPokemon(id: number) {
+  getPokemon(id: number): void {
     this.pokemonService.getById(this.pokemonId).subscribe(result => {
       this.pokemonModel = result
       this.registrationForm.patchValue(this.pokemonModel)
     })
   }
 
-  create = () => {
-    this.pokemonService.add(this.pokemonModel).subscribe(result => {
+  create = (): void => {
+    this.pokemonService.add(this.registrationForm.value).subscribe(result => {
       this.loading = false
       this.toastr.success('Pokemon cadastrado com sucesso.')
     },
@@ -87,7 +75,7 @@ export class FormRegistrationComponent implements OnInit {
     )
   }
 
-  update = () => {
+  update = (): void => {
     this.registrationForm.value.id = this.pokemonId
     this.pokemonService.update(this.registrationForm.value).subscribe(result => {
       this.loading = false
@@ -100,9 +88,8 @@ export class FormRegistrationComponent implements OnInit {
     )
   }
 
-  onSubmit = () => {
+  onSubmit = (): void => {
     this.loading = true
-    this.bindDataFormToDataModel()
     if (this.pokemonId) {
       this.update()
     } else {
