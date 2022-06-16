@@ -47,15 +47,15 @@ export class FormRegistrationComponent implements OnInit {
     })
   }
 
-  get nome() { return this.registrationForm.get('nomeControl') }
-  get descricao() { return this.registrationForm.get('descricaoControl') }
-  get altura() { return this.registrationForm.get('alturaControl') }
-  get peso() { return this.registrationForm.get('pesoControl') }
-  get categoria() { return this.registrationForm.get('categoriaControl') }
-  get habilidade() { return this.registrationForm.get('habilidadeControl') }
-  get ataque() { return this.registrationForm.get('ataqueControl') }
-  get defesa() { return this.registrationForm.get('defesaControl') }
-  get velocidade() { return this.registrationForm.get('velocidadeControl') }
+  get nome() { return this.registrationForm.get('nome') }
+  get descricao() { return this.registrationForm.get('descricao') }
+  get altura() { return this.registrationForm.get('altura') }
+  get peso() { return this.registrationForm.get('peso') }
+  get categoria() { return this.registrationForm.get('categoria') }
+  get habilidade() { return this.registrationForm.get('habilidade') }
+  get ataque() { return this.registrationForm.get('ataque') }
+  get defesa() { return this.registrationForm.get('defesa') }
+  get velocidade() { return this.registrationForm.get('velocidade') }
 
   getPokemon(id: number): void {
     this.pokemonService.getById(this.pokemonId).subscribe(result => {
