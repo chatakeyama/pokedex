@@ -38,13 +38,11 @@ export class FormRegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      this.pokemonId = params['id']
-      if (this.pokemonId) {
-        this.title = 'Editar pokémon'
-        this.getPokemon(this.pokemonId);
-      }
-    })
+    this.pokemonId = this.route.snapshot.params['id']
+    if (this.pokemonId) {
+      this.title = 'Editar pokémon'
+      this.getPokemon(this.pokemonId);
+    }
   }
 
   get nome() { return this.registrationForm.get('nome') }
