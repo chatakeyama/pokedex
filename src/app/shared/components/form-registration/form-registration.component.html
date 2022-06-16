@@ -63,7 +63,7 @@
         <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Ataque</mat-label>
-                <input type="number" min="0" matInput class="form-control" formControlName="ataque" required>
+                <input type="number" min="0" max="15" matInput class="form-control" formControlName="ataque" placeholder="máximo 15" required>
                 <mat-error *ngIf="ataque?.invalid && (ataque?.dirty || ataque?.touched)">Obrigatório</mat-error>
             </mat-form-field>
         </div>
@@ -71,7 +71,7 @@
         <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Defesa</mat-label>
-                <input type="number" min="0" matInput class="form-control" formControlName="defesa" required>
+                <input type="number" min="0" max="15" matInput class="form-control" formControlName="defesa" placeholder="máximo 15" required>
                 <mat-error *ngIf="defesa?.invalid && (defesa?.dirty || defesa?.touched)">Obrigatório</mat-error>
             </mat-form-field>
         </div>
@@ -79,7 +79,7 @@
         <div class="col-md-4">
             <mat-form-field appearance="outline">
                 <mat-label>Velocidade</mat-label>
-                <input type="number" min="0" matInput class="form-control" formControlName="velocidade" required>
+                <input type="number" min="0" max="15" matInput class="form-control" formControlName="velocidade" placeholder="máximo 15" required>
                 <mat-error *ngIf="velocidade?.invalid && (velocidade?.dirty || velocidade?.touched)">Obrigatório
                 </mat-error>
             </mat-form-field>
