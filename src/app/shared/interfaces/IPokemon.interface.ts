@@ -2,11 +2,11 @@ export interface IPokemon {
     id: number
     nome: string
     descricao: string
-    altura: string
+    altura: number
     peso: number
     categoria: string
     habilidade: string
-    ataque: string
-    defesa: string
-    velocidade: string
+    ataque: number
+    defesa: number
+    velocidade: number
 }
