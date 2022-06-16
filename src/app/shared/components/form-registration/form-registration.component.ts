@@ -65,11 +65,11 @@ export class FormRegistrationComponent implements OnInit {
 
   create = (): void => {
     this.pokemonService.add(this.registrationForm.value).subscribe(result => {
-      this.loading = false
+      this.stopLoading()
       this.toastr.success('Pokemon cadastrado com sucesso.')
     },
       error => {
-        this.loading = false
+        this.stopLoading()
         this.toastr.error('Não foi possível fazer o cadastro.')
       }
     )
@@ -78,11 +78,11 @@ export class FormRegistrationComponent implements OnInit {
   update = (): void => {
     this.registrationForm.value.id = this.pokemonId
     this.pokemonService.update(this.registrationForm.value).subscribe(result => {
-      this.loading = false
+      this.stopLoading()
       this.toastr.success('Pokemon editado com sucesso.')
     },
       error => {
-        this.loading = false
+        this.stopLoading()
         this.toastr.error('Não foi possível fazer a edição.')
       }
     )
@@ -95,6 +95,10 @@ export class FormRegistrationComponent implements OnInit {
     } else {
       this.create()
     }
+  }
+
+  stopLoading = (): void => {
+    this.loading = false
   }
 
 }
