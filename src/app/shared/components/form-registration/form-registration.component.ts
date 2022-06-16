@@ -33,7 +33,8 @@ export class FormRegistrationComponent implements OnInit {
   constructor(
     private pokemonService: PokemonService,
     private toastr: ToastrService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -73,6 +74,7 @@ export class FormRegistrationComponent implements OnInit {
         this.toastr.error('Não foi possível fazer o cadastro.')
       }
     )
+    this.goToListPage()
   }
 
   update = (): void => {
@@ -86,6 +88,7 @@ export class FormRegistrationComponent implements OnInit {
         this.toastr.error('Não foi possível fazer a edição.')
       }
     )
+    this.goToListPage()
   }
 
   onSubmit = (): void => {
@@ -99,6 +102,10 @@ export class FormRegistrationComponent implements OnInit {
 
   stopLoading = (): void => {
     this.loading = false
+  }
+
+  goToListPage = () => {
+    this.router.navigate(['/list'])
   }
 
 }
