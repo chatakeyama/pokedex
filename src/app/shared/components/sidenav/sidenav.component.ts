@@ -10,8 +10,10 @@ export class SidenavComponent implements OnInit {
 
   events: string[] = []
   opened: boolean = true
-  ADD_LABEL = 'Adicionar'
-  LIST_LABEL = 'Lista'
+  navigationConfigList = [
+    { route: '/list', label: 'Consultar', icon: 'receipt' },
+    { route: '/add', label: 'Adicionar', icon: 'add' }
+  ]
 
   constructor(private router: Router) { }
 
@@ -19,15 +21,11 @@ export class SidenavComponent implements OnInit {
   }
 
   navigateTo = (event: any): void => {
-    if (event.tab.textLabel === this.ADD_LABEL) {
-      this.router.navigate(['/add'])
-    } else if (event.tab.textLabel === this.LIST_LABEL) {
-      this.router.navigate(['/list'])
-    }
+    const route = this.navigationConfigList[event.index].route
+    this.router.navigate([route])
   }
 
   getCurrentRouteIndex = (): number => {
-    const routes = ['/add', '/list']
-    return routes.findIndex(r => r === this.router.url)
+    return this.navigationConfigList.findIndex(r => r.route === this.router.url)
   }
 }

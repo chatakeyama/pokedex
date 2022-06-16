@@ -3,10 +3,10 @@
         <h1 class="sidenav-container__brand">Pokédex</h1>
         <mat-nav-list role="navigation">
             <a mat-list-item [routerLink]="['/add']" class="sidenav-container__item">
-                Adicionar
+                <mat-icon class="sidenav-container__icon">add</mat-icon>Adicionar
             </a>
             <a mat-list-item [routerLink]="['/list']" class="sidenav-container__item">
-                Listar
+                <mat-icon class="sidenav-container__icon">receipt</mat-icon> Listar
             </a>
         </mat-nav-list>
     </mat-drawer>
@@ -19,8 +19,11 @@
         <mat-toolbar class="sidenav-container__bottom-bar">
             <mat-tab-group (selectedTabChange)="navigateTo($event)" [selectedIndex]="getCurrentRouteIndex()"
                 mat-stretch-tabs class="sidenav-container__buttons-bar">
-                <mat-tab [label]="ADD_LABEL"></mat-tab>
-                <mat-tab [label]="LIST_LABEL"></mat-tab>
+                <mat-tab *ngFor="let tab of navigationConfigList">
+                    <ng-template mat-tab-label>
+                        <mat-icon class="sidenav-container__icon">{{ tab.icon }}</mat-icon>{{ tab.label }}
+                    </ng-template>
+                </mat-tab>
             </mat-tab-group>
         </mat-toolbar>
 

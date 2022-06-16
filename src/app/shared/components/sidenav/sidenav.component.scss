@@ -1,12 +1,20 @@
 @import "../../../../assets/styles/breakpoints.scss";
 
+::ng-deep .mat-tab-label-content {
+    color: #ffffff;
+    font-size: 1.7rem;
+}
 .sidenav-container {
     position: absolute;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    background: #DFDFDF;
+    background: #dfdfdf;
+
+    &__icon {
+        margin-right: 0.5rem;
+    }
 
     &__main {
         margin-top: 8rem;
@@ -17,14 +25,14 @@
         text-align: center;
         margin-top: 4rem;
         margin-bottom: 3rem;
-        background-color: #FB1B1B ;
+        background-color: #fb1b1b;
         padding: 4rem;
     }
 
     &__side-menu {
-         width: 22rem;
-         background-color: #000000;
-         color: #FFFFFF;
+        width: 22rem;
+        background-color: #000000;
+        color: #ffffff;
 
         @media screen and (max-width: $bp_md) {
             display: none;
@@ -32,13 +40,13 @@
     }
 
     &__item {
-        color: #FFFFFF;
+        color: #ffffff;
         padding-left: 2rem !important;
         font-size: 1.9rem;
     }
 
     &__item:hover {
-        background-color: #DFDFDF;
+        background-color: #dfdfdf;
         color: #000000;
     }
 
@@ -46,6 +54,8 @@
         position: fixed;
         bottom: 0;
         height: 10rem;
+        background-color: #000000;
+
         @media screen and (min-width: $bp_md) {
             display: none;
         }
@@ -53,5 +63,6 @@
 
     &__buttons-bar {
         width: 100%;
+        color: #ffffff;
     }
 }
