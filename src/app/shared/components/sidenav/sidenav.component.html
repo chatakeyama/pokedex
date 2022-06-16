@@ -2,12 +2,11 @@
     <mat-drawer class="sidenav-container__side-menu" mode="side" opened>
         <h1 class="sidenav-container__brand">Pokédex</h1>
         <mat-nav-list role="navigation">
-            <a mat-list-item [routerLink]="['/add']" class="sidenav-container__item">
-                <mat-icon class="sidenav-container__icon">add</mat-icon>Adicionar
-            </a>
-            <a mat-list-item [routerLink]="['/list']" class="sidenav-container__item">
-                <mat-icon class="sidenav-container__icon">receipt</mat-icon> Listar
-            </a>
+            <ng-container *ngFor="let tab of navigationConfigList">
+                <a mat-list-item [routerLink]="tab.route" class="sidenav-container__item">
+                    <mat-icon class="sidenav-container__icon">{{ tab.icon }}</mat-icon>{{ tab.label }}
+                </a>
+            </ng-container>
         </mat-nav-list>
     </mat-drawer>
     <mat-drawer-content>
@@ -26,6 +25,5 @@
                 </mat-tab>
             </mat-tab-group>
         </mat-toolbar>
-
     </mat-drawer-content>
 </mat-drawer-container>

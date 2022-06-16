@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PokemonService } from 'src/app/services/pokemon.service';
-import { switchMap } from 'rxjs/operators';
-import { PokemonModel } from '../../models/Pokemon.model';
 import { ToastrService } from 'ngx-toastr';
+import { PokemonService } from 'src/app/services/pokemon.service';
+import { PokemonModel } from '../../models/Pokemon.model';
 
 @Component({
   selector: 'app-pokedex',
@@ -25,28 +24,27 @@ export class PokedexComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.pokemonId = this.route.snapshot.params['id']
+    this.getPokemonInfo(this.pokemonId)
+  }
 
-    this.route.params.pipe(
-      switchMap(value => this.pokemonService.getById(value.id))
-    ).subscribe(
+  getPokemonInfo = (id: number): void => {
+    this.pokemonService.getById(id).subscribe(
       result => {
-        this.loading = false
+        this.stopLoading()
         this.pokemon = result
-        this.pokemonId = result.id
       },
       error => {
-        this.loading = false
-        this.serverError = true
+        this.stopLoading()
         this.toastr.error('Não foi possível comunicar-se com o servidor.')
-      }
-    )
+      })
   }
 
   getSequenceOfNumbers(n: any): Array<number> {
     return Array(n);
   }
 
-  removePokemon = () => {
+  removePokemon = (): void => {
     this.pokemonService.delete(this.pokemonId).subscribe(
       result => {
         this.toastr.success('Pokémon removido com sucesso.')
@@ -59,6 +57,10 @@ export class PokedexComponent implements OnInit {
 
   editPokemon = (): void => {
     this.router.navigate([`/edit/${this.pokemonId}`])
+  }
+
+  stopLoading = (): void => {
+    this.loading = false
   }
 
 }
