@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Subscription } from 'rxjs';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { IPokemon } from '../../interfaces/IPokemon.interface';
 
@@ -16,6 +17,9 @@ export class FormRegistrationComponent implements OnInit {
   pokemonModel = {} as IPokemon
   loading: boolean = false
   pokemonId: number = 0
+  serverError: boolean = false
+  messageError: string = ''
+  subscription = new Subscription()
 
   registrationForm = new FormGroup({
     nome: new FormControl(this.pokemonModel.nome, [
@@ -43,6 +47,7 @@ export class FormRegistrationComponent implements OnInit {
       this.title = 'Editar pokémon'
       this.getPokemon(this.pokemonId);
     }
+
   }
 
   get nome() { return this.registrationForm.get('nome') }
@@ -56,10 +61,16 @@ export class FormRegistrationComponent implements OnInit {
   get velocidade() { return this.registrationForm.get('velocidade') }
 
   getPokemon(id: number): void {
-    this.pokemonService.getById(this.pokemonId).subscribe(result => {
+    this.loading = true
+    this.subscription = this.pokemonService.getById(this.pokemonId).subscribe(result => {
+      this.stopLoading()
       this.pokemonModel = result
       this.registrationForm.patchValue(this.pokemonModel)
-    })
+    },
+      error => {
+        this.stopLoading()
+        this.handleError(error)
+      })
   }
 
   create = (): void => {
@@ -106,4 +117,16 @@ export class FormRegistrationComponent implements OnInit {
     this.router.navigate(['/list'])
   }
 
+  handleError = (error: any) => {
+    this.serverError = true
+    if (error.status === 404) {
+      this.messageError = 'Pokémon não encontrado.'
+    } else {
+      this.messageError = 'Falha na comunicação com o servidor.'
+    }
+  }
+
+  onNgDestroy() {
+    this.subscription.unsubscribe()
+  }
 }

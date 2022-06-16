@@ -1,98 +1,106 @@
-<form [formGroup]="registrationForm">
-    <div class="row">
-        <div class="col-sm-12">
-            <h2>{{ title }}</h2>
+<ng-container *ngIf="!serverError; else messageErrorTemplate">
+    <form [formGroup]="registrationForm">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>{{ title }}</h2>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-md-12">
-            <mat-form-field appearance="outline">
-                <mat-label>Nome</mat-label>
-                <input matInput class="form-control" formControlName="nome" required>
-                <mat-error *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)">Obrigatório</mat-error>
-            </mat-form-field>
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input matInput class="form-control" formControlName="nome" required>
+                    <mat-error *ngIf="nome?.invalid && (nome?.dirty || nome?.touched)">Obrigatório</mat-error>
+                </mat-form-field>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-12">
-            <mat-form-field appearance="outline">
-                <mat-label>Descrição</mat-label>
-                <textarea matInput class="form-control" formControlName="descricao" required></textarea>
-                <mat-error *ngIf="descricao?.invalid && (descricao?.dirty || descricao?.touched)">Obrigatório
-                </mat-error>
-            </mat-form-field>
+        <div class="row">
+            <div class="col-md-12">
+                <mat-form-field appearance="outline">
+                    <mat-label>Descrição</mat-label>
+                    <textarea matInput class="form-control" formControlName="descricao" required></textarea>
+                    <mat-error *ngIf="descricao?.invalid && (descricao?.dirty || descricao?.touched)">Obrigatório
+                    </mat-error>
+                </mat-form-field>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <mat-form-field appearance="outline">
-                <mat-label>Altura (m)</mat-label>
-                <input type="number" min="0" onlyNumbersAndDots matInput class="form-control" formControlName="altura"
-                    required>
-                <mat-error *ngIf="altura?.invalid && (altura?.dirty || altura?.touched)">Obrigatório</mat-error>
-            </mat-form-field>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Altura (m)</mat-label>
+                    <input type="number" min="0" onlyNumbersAndDots matInput class="form-control"
+                        formControlName="altura" required>
+                    <mat-error *ngIf="altura?.invalid && (altura?.dirty || altura?.touched)">Obrigatório</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="outline" class="space-letf-xs">
+                    <mat-label>Peso (Kg)</mat-label>
+                    <input type="number" min="0" onlyNumbersAndDots matInput class="form-control" formControlName="peso"
+                        required>
+                    <mat-error *ngIf="peso?.invalid && (peso?.dirty || peso?.touched)">Obrigatório</mat-error>
+                </mat-form-field>
+            </div>
         </div>
-        <div class="col-md-6">
-            <mat-form-field appearance="outline" class="space-letf-xs">
-                <mat-label>Peso (Kg)</mat-label>
-                <input type="number" min="0" onlyNumbersAndDots matInput class="form-control" formControlName="peso"
-                    required>
-                <mat-error *ngIf="peso?.invalid && (peso?.dirty || peso?.touched)">Obrigatório</mat-error>
-            </mat-form-field>
+        <div class="row">
+            <div class="col-md-6">
+                <mat-form-field appearance="outline" class="space-letf-xs">
+                    <mat-label>Categoria</mat-label>
+                    <input matInput class="form-control" formControlName="categoria" required>
+                    <mat-error *ngIf="categoria?.invalid && (categoria?.dirty || categoria?.touched)">Obrigatório
+                    </mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-6">
+                <mat-form-field appearance="outline">
+                    <mat-label>Habilidade</mat-label>
+                    <input matInput class="form-control" formControlName="habilidade" required>
+                    <mat-error *ngIf="habilidade?.invalid && (habilidade?.dirty || habilidade?.touched)">Obrigatório
+                    </mat-error>
+                </mat-form-field>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <mat-form-field appearance="outline" class="space-letf-xs">
-                <mat-label>Categoria</mat-label>
-                <input matInput class="form-control" formControlName="categoria" required>
-                <mat-error *ngIf="categoria?.invalid && (categoria?.dirty || categoria?.touched)">Obrigatório
-                </mat-error>
-            </mat-form-field>
+        <div class="row">
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Ataque</mat-label>
+                    <input type="number" onlyNumbers matInput class="form-control" formControlName="ataque"
+                        placeholder="Valor máximo 15" required>
+                    <mat-error *ngIf="ataque?.invalid && (ataque?.dirty || ataque?.touched)"></mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Defesa</mat-label>
+                    <input type="number" onlyNumbers min="0" max="15" matInput class="form-control"
+                        formControlName="defesa" placeholder="Valor máximo 15" required>
+                    <mat-error *ngIf="defesa?.invalid && (defesa?.dirty || defesa?.touched)">Obrigatório</mat-error>
+                </mat-form-field>
+            </div>
+            <div class="col-md-4">
+                <mat-form-field appearance="outline">
+                    <mat-label>Velocidade</mat-label>
+                    <input type="number" onlyNumbers min="0" max="15" matInput class="form-control"
+                        formControlName="velocidade" placeholder="Valor máximo 15" required>
+                    <mat-error *ngIf="velocidade?.invalid && (velocidade?.dirty || velocidade?.touched)">Obrigatório
+                    </mat-error>
+                </mat-form-field>
+            </div>
         </div>
-        <div class="col-md-6">
-            <mat-form-field appearance="outline">
-                <mat-label>Habilidade</mat-label>
-                <input matInput class="form-control" formControlName="habilidade" required>
-                <mat-error *ngIf="habilidade?.invalid && (habilidade?.dirty || habilidade?.touched)">Obrigatório
-                </mat-error>
-            </mat-form-field>
+        <div class="row">
+            <div class="col-md-2">
+                <button mat-flat-button [disabled]="!registrationForm.valid" (click)="onSubmit()">Salvar</button>
+            </div>
         </div>
-    </div>
-    <div class="row">
-        <div class="col-md-4">
-            <mat-form-field appearance="outline">
-                <mat-label>Ataque</mat-label>
-                <input type="number" onlyNumbers matInput class="form-control" formControlName="ataque"
-                    placeholder="Valor máximo 15" required>
-                <mat-error *ngIf="ataque?.invalid && (ataque?.dirty || ataque?.touched)"></mat-error>
-            </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field appearance="outline">
-                <mat-label>Defesa</mat-label>
-                <input type="number" onlyNumbers min="0" max="15" matInput class="form-control" formControlName="defesa"
-                    placeholder="Valor máximo 15" required>
-                <mat-error *ngIf="defesa?.invalid && (defesa?.dirty || defesa?.touched)">Obrigatório</mat-error>
-            </mat-form-field>
-        </div>
-        <div class="col-md-4">
-            <mat-form-field appearance="outline">
-                <mat-label>Velocidade</mat-label>
-                <input type="number" onlyNumbers min="0" max="15" matInput class="form-control"
-                    formControlName="velocidade" placeholder="Valor máximo 15" required>
-                <mat-error *ngIf="velocidade?.invalid && (velocidade?.dirty || velocidade?.touched)">Obrigatório
-                </mat-error>
-            </mat-form-field>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            <button mat-flat-button [disabled]="!registrationForm.valid" (click)="onSubmit()">Salvar</button>
-        </div>
-    </div>
-</form>
+    </form>
+
+</ng-container>
+
+<ng-template #messageErrorTemplate>
+    <mat-card>{{ messageError }}</mat-card>
+</ng-template>
+
 <ng-container *ngIf="loading">
     <app-loading></app-loading>
 </ng-container>
