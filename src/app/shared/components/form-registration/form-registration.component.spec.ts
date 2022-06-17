@@ -6,7 +6,9 @@ import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute } from '@angular/router';
 import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA } from '@angular/core';
 
-class ToastrServiceStub { }
+class ToastrServiceStub {
+  success() { }
+}
 
 describe('FormRegistrationComponent', () => {
   let component: FormRegistrationComponent;
@@ -69,7 +71,7 @@ describe('FormRegistrationComponent', () => {
 
   it('Should call goToListPage() when adding a pokémon', () => {
     let spy = spyOn(component, 'goToListPage');
-    component.create()
+    component.onSuccess('Sucesso')
     expect(spy).toHaveBeenCalled();
   });
 
