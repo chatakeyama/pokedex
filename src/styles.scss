@@ -14,6 +14,7 @@ html {
 
 .container {
     margin: auto;
+    max-width: 90rem;
     width: 75%;
     @media screen and (max-width: $bp_md) {
         width: 80%;
