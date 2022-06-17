@@ -1,27 +1,52 @@
-# Pokedex
+# Pokédex
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.2.
+Projeto web de gerenciamento e exibição de informação sobre Pokémons.
+A aplicação possui 4 rotas, cada uma com os seguintes objetivos:
 
-## Development server
+ - Cadastrar
+ - Editar
+ - Listar
+ - Exibir dados
+ 
+## Tecnologias 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Este projeto foi desenvolvido utilizando as seguintes tecnologias:
 
-## Code scaffolding
+ - Angular:  12.1.4
+ -  Node.js: 14.19.1
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Requisitos
 
-## Build
+Para executar a aplicação, é necessário instalar o Node.js versão 14.19.1
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+>[ Node.js]( https://nodejs.org/dist/v14.19.1/)
 
-## Running unit tests
+## Execução da aplicação
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Entre  na pasta raíz do projeto e execute o comando de instalação das dependências do projeto
+```
+npm install
+```
+Execute o comando a seguir para iniciar a aplicação
+```
+npm run start
+```
+O comando acima executa em paralelo o servidor da aplicação e o servidor de API REST ( json-server ). O arquivo db.json localizado na raiz do projeto é usado pelo json-server para armazenar toda fonte de dados da aplicação.
 
-## Running end-to-end tests
+## Testes unitários
+Os testes unitários foram feitos utilizando as próprias ferramentas de testes provenientes do Angular, o Jasmine e o test runner Karma. Para executar os testes unitários, é necessário possuir o navegador Chrome instalado. Para rodar os testes, execute
+```
+npm run test
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+##  Testes end to end
+Os testes end to end foram feitos utilizando o framework de testes Cypress.
+>[Cypress](https://www.cypress.io/)
 
-## Further help
+**Importante: para realizar os testes end to end, é necessário que a aplicação esteja em execução.** 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Execute o seguinte comando na raíz do projeto
+```
+npm run cypress:open
+```
+Na janela de boas vindas do Cypress que abrirá, clique na opção "E2E Testing". Em seguida, escolha a opção "Chrome" e clique no botão "Start E2E Testing in Chrome". Será aberto o navegador. Para iniciar os testes, clique no arquivo listado "spec.cy.ts" 
