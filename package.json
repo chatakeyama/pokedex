@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run start-db-server && ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "start-db-server": "json-server db.json"
   },
   "private": true,
   "dependencies": {
@@ -34,6 +35,7 @@
     "@types/node": "^12.11.1",
     "cypress": "^10.1.0",
     "jasmine-core": "~3.8.0",
+    "json-server": "^0.17.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
