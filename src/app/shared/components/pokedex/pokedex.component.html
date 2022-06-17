@@ -78,7 +78,7 @@
 </ng-container>
 
 <ng-template #templateMessage>
-    <mat-card>Não foi possível carregar os dados do pokémon</mat-card>
+    <mat-card>{{ messageError }}</mat-card>
 </ng-template>
 
 <ng-container *ngIf="loading">

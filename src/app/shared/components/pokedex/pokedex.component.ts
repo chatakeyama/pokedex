@@ -15,6 +15,7 @@ export class PokedexComponent implements OnInit {
   pokemon = new PokemonModel()
   loading: boolean = true
   serverError: boolean = false
+  messageError: string = ''
 
   constructor(
     private pokemonService: PokemonService,
@@ -34,10 +35,7 @@ export class PokedexComponent implements OnInit {
         this.stopLoading()
         this.pokemon = result
       },
-      error => {
-        this.stopLoading()
-        this.toastr.error('Não foi possível comunicar-se com o servidor.')
-      })
+      this.handleGetPokemonByIdError)
   }
 
   getSequenceOfNumbers(n: any): Array<number> {
@@ -61,6 +59,16 @@ export class PokedexComponent implements OnInit {
 
   stopLoading = (): void => {
     this.loading = false
+  }
+
+  handleGetPokemonByIdError = (error: any) => {
+    this.stopLoading()
+    this.serverError = true
+    if (error.status === 404) {
+      this.messageError = 'Pokémon não encontrado.'
+    } else {
+      this.messageError = 'Falha na comunicação com o servidor.'
+    }
   }
 
 }
