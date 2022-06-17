@@ -48,8 +48,6 @@ describe('Form Registration', () => {
 
     cy.get('@submit').click()
     cy.wait(3000)
-    cy.visit('http://localhost:4200/list');
-    cy.wait(2000)
     cy.get('[data-test="pokemon-name"]').contains('Gastly').click()
     cy.wait(3000)
     cy.get('[data-test="remove-btn"]').click()
