@@ -1,0 +1,16 @@
+{
+  "pokemons": [
+    {
+      "nome": "Pikachu",
+      "descricao": "Pikachu that can generate powerful electricity have cheek sacs that are extra soft and super stretchy. ",
+      "altura": 0.4,
+      "peso": 6,
+      "categoria": "Mouse",
+      "habilidade": "Static",
+      "ataque": 4,
+      "defesa": 3,
+      "velocidade": 6,
+      "id": 1
+    }
+  ]
+}
