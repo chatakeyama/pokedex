@@ -1,4 +1,4 @@
-describe('Form Registration', () => {
+describe('Registering and removing a Pokémon', () => {
 
   beforeEach(() => {
 
