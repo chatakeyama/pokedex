@@ -77,13 +77,13 @@ export class FormRegistrationComponent implements OnInit {
     this.pokemonService.add(this.registrationForm.value).subscribe(result => {
       this.stopLoading()
       this.toastr.success('Pokemon cadastrado com sucesso.')
+      this.goToListPage()
     },
       error => {
         this.stopLoading()
         this.toastr.error('Não foi possível fazer o cadastro.')
       }
     )
-    this.goToListPage()
   }
 
   update = (): void => {
@@ -91,13 +91,13 @@ export class FormRegistrationComponent implements OnInit {
     this.pokemonService.update(this.registrationForm.value).subscribe(result => {
       this.stopLoading()
       this.toastr.success('Pokemon editado com sucesso.')
+      this.goToListPage()
     },
       error => {
         this.stopLoading()
         this.toastr.error('Não foi possível fazer a edição.')
       }
     )
-    this.goToListPage()
   }
 
   onSubmit = (): void => {
