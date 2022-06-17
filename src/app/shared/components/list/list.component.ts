@@ -14,11 +14,12 @@ export class ListComponent implements OnInit {
   displayedColumns: string[] = ['pokemon-id', 'pokemon-nome', 'pokemon-descricao']
   dataSource: IPokemon[] = []
   loading: boolean = true
+  messageError: string = ''
+  serverError: boolean = false
 
   constructor(
     private pokemonService: PokemonService,
     private router: Router,
-    private toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -32,7 +33,8 @@ export class ListComponent implements OnInit {
         this.dataSource = result
       }, error => {
         this.loading = false
-        this.toastr.error('Não foi possível comunicar-se com o servidor')
+        this.serverError = true
+        this.handleError()
       })
   }
 
@@ -42,5 +44,9 @@ export class ListComponent implements OnInit {
 
   isDataSourceNotEmpty = (): boolean => {
     return this.dataSource.length > 0
+  }
+
+  handleError = (): void => {
+    this.messageError = 'Falha na comunicação com o servidor.'
   }
 }

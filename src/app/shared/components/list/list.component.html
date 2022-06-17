@@ -1,4 +1,4 @@
-<ng-container *ngIf="isDataSourceNotEmpty(); else templateMessage">
+<ng-container *ngIf="!serverError; else messageErrorTemplate">
   <table mat-table [dataSource]="dataSource" class="list-table">
     <!-- id Column -->
     <ng-container matColumnDef="pokemon-id">
@@ -24,10 +24,9 @@
   </table>
 </ng-container>
 
-<ng-template #templateMessage>
-  <mat-card>Não há pokemons para serem exibidos.</mat-card>
+<ng-template #messageErrorTemplate>
+  <mat-card>{{ messageError }}</mat-card>
 </ng-template>
-
 
 <ng-container *ngIf="loading">
   <app-loading></app-loading>
