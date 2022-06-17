@@ -3,13 +3,14 @@
     <!-- id Column -->
     <ng-container matColumnDef="pokemon-id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      <td mat-cell *matCellDef="let element" data-test="pokemon-id"> {{element.id}} </td>
     </ng-container>
 
     <!-- Nome Column -->
     <ng-container matColumnDef="pokemon-nome">
       <th mat-header-cell *matHeaderCellDef> Nome </th>
-      <td mat-cell *matCellDef="let element" class="list-table__second-column"> {{element.nome}} </td>
+      <td mat-cell *matCellDef="let element" class="list-table__second-column" data-test="pokemon-name">
+        {{element.nome}} </td>
     </ng-container>
 
     <!-- Descrição Column -->
