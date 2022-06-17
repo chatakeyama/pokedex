@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { PokemonService } from 'src/app/services/pokemon.service';
 import { IPokemon } from '../../interfaces/IPokemon.interface';
 @Component({
@@ -40,10 +39,6 @@ export class ListComponent implements OnInit {
 
   onClickRow(row: any) {
     this.router.navigate([`/pokedex/${row.id}`])
-  }
-
-  isDataSourceNotEmpty = (): boolean => {
-    return this.dataSource.length > 0
   }
 
   handleError = (): void => {
