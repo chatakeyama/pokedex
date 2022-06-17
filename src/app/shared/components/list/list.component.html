@@ -1,4 +1,4 @@
-<ng-container *ngIf="!serverError; else messageErrorTemplate">
+<ng-container *ngIf="!messageError; else messageErrorTemplate">
   <table mat-table [dataSource]="dataSource" class="list-table">
     <!-- id Column -->
     <ng-container matColumnDef="pokemon-id">
@@ -20,7 +20,7 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onClickRow(row)"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="onRowClicked(row)"></tr>
   </table>
 </ng-container>
 

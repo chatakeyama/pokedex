@@ -26,22 +26,31 @@ export class ListComponent implements OnInit {
   }
 
   getAllPokemons = () => {
-    this.pokemonService.getAll().subscribe(
-      result => {
-        this.loading = false
-        this.dataSource = result
-      }, error => {
-        this.loading = false
-        this.serverError = true
-        this.handleError()
-      })
+    this.messageError = ''
+    this.pokemonService.getAll()
+      .subscribe(this.onSuccess, this.handleError)
   }
 
-  onClickRow(row: any) {
+  onSuccess = (result: IPokemon[]) => {
+    this.loading = false
+    this.dataSource = result
+    if (this.isDataSourceEmpty()) {
+      this.messageError = 'Nenhum pokémon cadastrado.'
+    }
+  }
+
+  handleError = () => {
+    this.loading = false
+    this.messageError = 'Falha na comunicação com o servidor.'
+    this.serverError = true
+  }
+
+  isDataSourceEmpty = (): boolean => {
+    return this.dataSource.length < 1
+  }
+
+  onRowClicked(row: any) {
     this.router.navigate([`/pokedex/${row.id}`])
   }
 
-  handleError = (): void => {
-    this.messageError = 'Falha na comunicação com o servidor.'
-  }
 }

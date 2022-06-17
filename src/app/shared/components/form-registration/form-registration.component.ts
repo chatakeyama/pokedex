@@ -62,42 +62,59 @@ export class FormRegistrationComponent implements OnInit {
 
   getPokemon(id: number): void {
     this.loading = true
-    this.subscription = this.pokemonService.getById(this.pokemonId).subscribe(result => {
-      this.stopLoading()
-      this.pokemonModel = result
-      this.registrationForm.patchValue(this.pokemonModel)
-    },
-      error => {
+    this.subscription = this.pokemonService.getById(this.pokemonId)
+      .subscribe(result => {
         this.stopLoading()
-        this.handleError(error)
-      })
+        this.pokemonModel = result
+        this.registrationForm.patchValue(this.pokemonModel)
+      },
+      this.handleGetPokemonByIdError)
+  }
+
+  handleGetPokemonByIdError = (error: any) => {
+    this.stopLoading()
+    this.serverError = true
+    if (error.status === 404) {
+      this.messageError = 'Pokémon não encontrado.'
+    } else {
+      this.messageError = 'Falha na comunicação com o servidor.'
+    }
   }
 
   create = (): void => {
-    this.pokemonService.add(this.registrationForm.value).subscribe(result => {
-      this.stopLoading()
-      this.toastr.success('Pokemon cadastrado com sucesso.')
-      this.goToListPage()
+    this.pokemonService.add(this.registrationForm.value).subscribe(() => {
+      this.onSuccess('Pokémon cadastrado com sucesso.')
     },
-      error => {
-        this.stopLoading()
-        this.toastr.error('Não foi possível fazer o cadastro.')
+      () => {
+        this.handleCreateOrUpdateError('Não foi possível fazer o cadastro.')
       }
     )
   }
 
   update = (): void => {
     this.registrationForm.value.id = this.pokemonId
-    this.pokemonService.update(this.registrationForm.value).subscribe(result => {
-      this.stopLoading()
-      this.toastr.success('Pokemon editado com sucesso.')
-      this.goToListPage()
+    this.pokemonService.update(this.registrationForm.value).subscribe(() => {
+      this.onSuccess('Pokémon editado com sucesso.')
     },
-      error => {
-        this.stopLoading()
-        this.toastr.error('Não foi possível fazer a edição.')
+      () => {
+        this.handleCreateOrUpdateError('Não foi possível fazer a edição.')
       }
     )
+  }
+
+  onSuccess = (message: string) => {
+    this.stopLoading()
+    this.toastr.success(message)
+    this.goToListPage()
+  }
+
+  goToListPage = () => {
+    this.router.navigate(['/list'])
+  }
+
+  handleCreateOrUpdateError = (message: string) => {
+    this.stopLoading()
+    this.toastr.error(message)
   }
 
   onSubmit = (): void => {
@@ -111,19 +128,6 @@ export class FormRegistrationComponent implements OnInit {
 
   stopLoading = (): void => {
     this.loading = false
-  }
-
-  goToListPage = () => {
-    this.router.navigate(['/list'])
-  }
-
-  handleError = (error: any) => {
-    this.serverError = true
-    if (error.status === 404) {
-      this.messageError = 'Pokémon não encontrado.'
-    } else {
-      this.messageError = 'Falha na comunicação com o servidor.'
-    }
   }
 
   onNgDestroy() {
