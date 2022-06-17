@@ -23,7 +23,7 @@ export class FormRegistrationComponent implements OnInit {
 
   registrationForm = new FormGroup({
     nome: new FormControl(this.pokemonModel.nome, [
-      Validators.required, Validators.minLength(4)]),
+      Validators.required, Validators.minLength(2)]),
     descricao: new FormControl(this.pokemonModel.descricao, Validators.required),
     altura: new FormControl(this.pokemonModel.altura, Validators.required),
     peso: new FormControl(this.pokemonModel.peso, Validators.required),
