@@ -25,6 +25,10 @@
 .card {
     padding: 5rem;
 
+    @media screen and (max-width: $bp_md) {
+        padding: 2.2rem;
+    }
+
     &__stats {
         @include subcard(#d5a100);
     }
