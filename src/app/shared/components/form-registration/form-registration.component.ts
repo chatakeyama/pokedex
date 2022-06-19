@@ -68,26 +68,20 @@ export class FormRegistrationComponent implements OnInit {
         this.pokemonModel = result
         this.registrationForm.patchValue(this.pokemonModel)
       },
-      this.handleGetPokemonByIdError)
+        this.handleGetPokemonByIdError)
   }
 
-  handleGetPokemonByIdError = (error: any) => {
+  handleGetPokemonByIdError = (error: string) => {
     this.stopLoading()
     this.serverError = true
-    if (error.status === 404) {
-      this.messageError = 'Pokémon não encontrado.'
-    } else {
-      this.messageError = 'Falha na comunicação com o servidor.'
-    }
+    this.messageError = error
   }
 
   create = (): void => {
     this.pokemonService.add(this.registrationForm.value).subscribe(() => {
       this.onSuccess('Pokémon cadastrado com sucesso.')
     },
-      () => {
-        this.handleCreateOrUpdateError('Não foi possível fazer o cadastro.')
-      }
+      this.handleCreateOrUpdateError
     )
   }
 
@@ -96,9 +90,7 @@ export class FormRegistrationComponent implements OnInit {
     this.pokemonService.update(this.registrationForm.value).subscribe(() => {
       this.onSuccess('Pokémon editado com sucesso.')
     },
-      () => {
-        this.handleCreateOrUpdateError('Não foi possível fazer a edição.')
-      }
+      this.handleCreateOrUpdateError
     )
   }
 

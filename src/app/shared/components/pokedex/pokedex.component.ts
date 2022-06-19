@@ -35,7 +35,8 @@ export class PokedexComponent implements OnInit {
         this.stopLoading()
         this.pokemon = result
       },
-      this.handleGetPokemonByIdError)
+      this.handleRequestError
+    )
   }
 
   getSequenceOfNumbers(n: any): Array<number> {
@@ -44,12 +45,11 @@ export class PokedexComponent implements OnInit {
 
   removePokemon = (): void => {
     this.pokemonService.delete(this.pokemonId).subscribe(
-      result => {
+      () => {
         this.toastr.success('Pokémon removido com sucesso.')
         this.router.navigate(['/list'])
-      }, error => {
-        this.toastr.error('Não foi possível deletar. Tente novamente mais tarde.')
-      }
+      },
+      this.handleRequestError
     )
   }
 
@@ -61,14 +61,10 @@ export class PokedexComponent implements OnInit {
     this.loading = false
   }
 
-  handleGetPokemonByIdError = (error: any) => {
+  handleRequestError = (error: string) => {
     this.stopLoading()
     this.serverError = true
-    if (error.status === 404) {
-      this.messageError = 'Pokémon não encontrado.'
-    } else {
-      this.messageError = 'Falha na comunicação com o servidor.'
-    }
+    this.messageError = error
   }
 
 }

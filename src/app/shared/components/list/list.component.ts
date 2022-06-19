@@ -39,9 +39,9 @@ export class ListComponent implements OnInit {
     }
   }
 
-  handleError = () => {
+  handleError = (error: any) => {
     this.loading = false
-    this.messageError = 'Falha na comunicação com o servidor.'
+    this.messageError = error
     this.serverError = true
   }
 
