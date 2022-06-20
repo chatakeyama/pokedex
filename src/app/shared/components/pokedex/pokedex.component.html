@@ -78,7 +78,7 @@
 </ng-container>
 
 <ng-template #templateMessage>
-    <mat-card>{{ messageError }}</mat-card>
+    <error-message [message]="messageError"></error-message>
 </ng-template>
 
 <ng-container *ngIf="loading">

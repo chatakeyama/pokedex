@@ -23,6 +23,7 @@ import { PokedexComponent } from './shared/components/pokedex/pokedex.component'
 import { LoadingComponent } from './shared/components/loading/loading.component';
 import { OnlyNumbersDirective } from './shared/directives/only-numbers.directive';
 import { OnlyNumbersAndDotsDirective } from './shared/directives/only-numbers-and-dots.directive';
+import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { OnlyNumbersAndDotsDirective } from './shared/directives/only-numbers-an
     PokedexComponent,
     LoadingComponent,
     OnlyNumbersDirective,
-    OnlyNumbersAndDotsDirective
+    OnlyNumbersAndDotsDirective,
+    ErrorMessageComponent
   ],
   imports: [
     BrowserModule,

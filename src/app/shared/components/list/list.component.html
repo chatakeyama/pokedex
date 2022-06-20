@@ -25,7 +25,7 @@
 </ng-container>
 
 <ng-template #messageErrorTemplate>
-  <mat-card>{{ messageError }}</mat-card>
+  <error-message [message]="messageError"></error-message>
 </ng-template>
 
 <ng-container *ngIf="loading">
