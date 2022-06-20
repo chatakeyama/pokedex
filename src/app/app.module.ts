@@ -24,6 +24,7 @@ import { LoadingComponent } from './shared/components/loading/loading.component'
 import { OnlyNumbersDirective } from './shared/directives/only-numbers.directive';
 import { OnlyNumbersAndDotsDirective } from './shared/directives/only-numbers-and-dots.directive';
 import { ErrorMessageComponent } from './shared/components/error-message/error-message.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 
 
 @NgModule({
@@ -36,7 +37,8 @@ import { ErrorMessageComponent } from './shared/components/error-message/error-m
     LoadingComponent,
     OnlyNumbersDirective,
     OnlyNumbersAndDotsDirective,
-    ErrorMessageComponent
+    ErrorMessageComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

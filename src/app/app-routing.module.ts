@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormRegistrationComponent } from './shared/components/form-registration/form-registration.component';
 import { ListComponent } from './shared/components/list/list.component';
+import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { PokedexComponent } from './shared/components/pokedex/pokedex.component';
 
 const routes: Routes = [
@@ -10,6 +11,7 @@ const routes: Routes = [
   { path: 'list', component: ListComponent },
   { path: 'pokedex/:id', component: PokedexComponent },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({
