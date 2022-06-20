@@ -4,6 +4,17 @@
     color: #ffffff;
     font-size: 1.7rem;
 }
+
+//dispositivos que podem ter hover
+@media (hover: hover) {
+    .sidenav-container {
+        &__item:hover {
+            background-color: #dfdfdf;
+            color: #000;
+        }
+    }
+}
+
 .sidenav-container {
     position: absolute;
     top: 0;
@@ -43,11 +54,6 @@
         color: #ffffff;
         padding-left: 2rem !important;
         font-size: 1.9rem;
-    }
-
-    &__item:hover {
-        background-color: #dfdfdf;
-        color: #000000;
     }
 
     &__bottom-bar {
