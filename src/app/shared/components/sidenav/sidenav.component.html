@@ -12,7 +12,12 @@
     <mat-drawer-content>
         <div class="sidenav-container__main">
             <div class="container">
-                <router-outlet></router-outlet>
+                <ng-container *ngIf="loading; else content">
+                    <app-loading></app-loading>
+                </ng-container>
+                <ng-template #content>
+                    <router-outlet></router-outlet>
+                </ng-template>
             </div>
         </div>
         <mat-toolbar class="sidenav-container__bottom-bar">

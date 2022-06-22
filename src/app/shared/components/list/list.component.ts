@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { PokemonService } from 'src/app/services/pokemon.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { IPokemon } from '../../interfaces/IPokemon.interface';
+import { IPokemonsResolved } from '../../interfaces/IPokemonsResolved.interface';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
@@ -11,42 +12,36 @@ import { IPokemon } from '../../interfaces/IPokemon.interface';
 export class ListComponent implements OnInit {
 
   displayedColumns: string[] = ['pokemon-id', 'pokemon-nome', 'pokemon-descricao']
-  dataSource: IPokemon[] = []
-  loading: boolean = true
+  pokemons: IPokemon[] = []
   messageError: string = ''
-  serverError: boolean = false
+  pokemons$ = new Observable<any>()
+  isLoading$ = new Observable<boolean>()
 
   constructor(
-    private pokemonService: PokemonService,
     private router: Router,
+    private activateRoute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
-    this.getAllPokemons()
+    this.pokemons$ = this.activateRoute.data
+    this.pokemons$.subscribe(result => {
+      this.handleResolverResponse(result.pokemonsResolved)
+    })
   }
 
-  getAllPokemons = () => {
-    this.messageError = ''
-    this.pokemonService.getAll()
-      .subscribe(this.onSuccess, this.handleError)
-  }
-
-  onSuccess = (result: IPokemon[]) => {
-    this.loading = false
-    this.dataSource = result
-    if (this.isDataSourceEmpty()) {
-      this.messageError = 'Nenhum pokémon cadastrado.'
+  handleResolverResponse = (pokemonsResolved: IPokemonsResolved) => {
+    if (pokemonsResolved.error) {
+      this.messageError = pokemonsResolved.error
+    } else {
+      this.onSuccess(pokemonsResolved.pokemons)
     }
   }
 
-  handleError = (error: any) => {
-    this.loading = false
-    this.messageError = error
-    this.serverError = true
-  }
-
-  isDataSourceEmpty = (): boolean => {
-    return this.dataSource.length < 1
+  onSuccess = (pokemons: IPokemon[]) => {
+    this.pokemons = pokemons
+    if (pokemons.length < 1) {
+      this.messageError = 'Nenhum pokémon cadastrado.'
+    }
   }
 
   onRowClicked(row: any) {

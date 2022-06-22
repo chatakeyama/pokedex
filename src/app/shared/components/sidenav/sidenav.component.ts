@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sidenav',
   templateUrl: './sidenav.component.html',
   styleUrls: ['./sidenav.component.scss']
 })
-export class SidenavComponent implements OnInit {
+export class SidenavComponent {
 
+  @Input() loading = true;
   events: string[] = []
   opened: boolean = true
   navigationConfigList = [
@@ -16,10 +17,7 @@ export class SidenavComponent implements OnInit {
   ]
 
   constructor(private router: Router) { }
-
-  ngOnInit(): void {
-  }
-
+ 
   navigateTo = (event: any): void => {
     const route = this.navigationConfigList[event.index].route
     this.router.navigate([route])
