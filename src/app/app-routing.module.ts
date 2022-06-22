@@ -4,11 +4,16 @@ import { FormRegistrationComponent } from './shared/components/form-registration
 import { ListComponent } from './shared/components/list/list.component';
 import { PageNotFoundComponent } from './shared/components/page-not-found/page-not-found.component';
 import { PokedexComponent } from './shared/components/pokedex/pokedex.component';
+import { PokemonResolver } from './shared/resolvers/pokemons.resolver';
 
 const routes: Routes = [
   { path: 'add', component: FormRegistrationComponent },
   { path: 'edit/:id', component: FormRegistrationComponent },
-  { path: 'list', component: ListComponent },
+  {
+    path: 'list', component: ListComponent, resolve: {
+      pokemonsResolved: PokemonResolver
+    }
+  },
   { path: 'pokedex/:id', component: PokedexComponent },
   { path: '', redirectTo: '/list', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent },

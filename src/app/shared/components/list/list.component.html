@@ -1,5 +1,5 @@
-<ng-container *ngIf="!messageError; else messageErrorTemplate">
-  <table mat-table [dataSource]="dataSource" class="list-table">
+<ng-container *ngIf="pokemons.length>0; else messageErrorTemplate">
+  <table mat-table [dataSource]="pokemons" class="list-table">
     <!-- id Column -->
     <ng-container matColumnDef="pokemon-id">
       <th mat-header-cell *matHeaderCellDef> ID </th>
@@ -27,7 +27,3 @@
 <ng-template #messageErrorTemplate>
   <error-message [message]="messageError"></error-message>
 </ng-template>
-
-<ng-container *ngIf="loading">
-  <app-loading></app-loading>
-</ng-container>
