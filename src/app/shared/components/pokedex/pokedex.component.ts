@@ -14,8 +14,7 @@ export class PokedexComponent implements OnInit {
   pokemonId: number = 0
   pokemon = new PokemonModel()
   loading: boolean = true
-  serverError: boolean = false
-  messageError: string = ''
+  errorMessage: string = ''
 
   constructor(
     private pokemonService: PokemonService,
@@ -63,8 +62,7 @@ export class PokedexComponent implements OnInit {
 
   handleRequestError = (error: string) => {
     this.stopLoading()
-    this.serverError = true
-    this.messageError = error
+    this.errorMessage = error
   }
 
 }
