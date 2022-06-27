@@ -1,23 +1,24 @@
 import { Injectable } from '@angular/core';
-import { Resolve } from '@angular/router';
-import { Observable, of } from 'rxjs';
 import { catchError, delay, map } from 'rxjs/operators';
+import { Resolve, ActivatedRouteSnapshot } from '@angular/router';
+import { Observable, of } from 'rxjs';
 import { PokemonService } from 'src/app/services/pokemon.service';
-import { IPokemonsResolved } from '../interfaces/IPokemonsResolved.interface';
+import { IPokemonResolved } from '../interfaces/IPokemonResolved.interface';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PokemonResolver implements Resolve<IPokemonsResolved> {
+export class PokemonResolver implements Resolve<IPokemonResolved> {
 
-  constructor(private pokemonService: PokemonService) {
-  }
-  resolve(): Observable<IPokemonsResolved> {
-    return this.pokemonService.getAll().pipe(
+  constructor(private pokemonService: PokemonService) { }
+
+  resolve(route: ActivatedRouteSnapshot): Observable<IPokemonResolved> {
+    const id = route.params.id
+    return this.pokemonService.getById(id).pipe(
       delay(1000),
-      map(result => ({ pokemons: result, error: null })),
+      map(result => ({ pokemon: result, error: null })),
       catchError((error) => {
-        return of({ pokemons: [], error: error })
+        return of({ pokemon: undefined, error: error })
       })
     )
   }

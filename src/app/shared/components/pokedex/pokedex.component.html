@@ -1,4 +1,4 @@
-<ng-container *ngIf="!serverError; else templateMessage">
+<ng-container *ngIf="!errorMessage; else templateMessage">
     <mat-card class="card">
         <mat-card-subtitle>Pokédex</mat-card-subtitle>
         <mat-card-title class="card__title">{{ pokemon.nome }}</mat-card-title>
@@ -78,7 +78,7 @@
 </ng-container>
 
 <ng-template #templateMessage>
-    <error-message [message]="messageError"></error-message>
+    <error-message [message]="errorMessage"></error-message>
 </ng-template>
 
 <ng-container *ngIf="loading">

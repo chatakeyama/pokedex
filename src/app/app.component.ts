@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ResolveEnd, ResolveStart, Router } from '@angular/router';
 import { merge, Observable, Subject, Subscription } from 'rxjs';
-import { filter, mapTo, tap } from 'rxjs/operators';
+import { filter, mapTo } from 'rxjs/operators';
 
 @Component({
   selector: 'app-root',
