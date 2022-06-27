@@ -65,7 +65,7 @@
             <div class="col-md-4">
                 <mat-form-field appearance="outline">
                     <mat-label>Ataque</mat-label>
-                    <input type="number" onlyNumbers matInput class="form-control" formControlName="ataque"
+                    <input type="number" onlyNumbers  min="0" max="15" matInput class="form-control" formControlName="ataque"
                         placeholder="Valor máximo 15" required data-test="ataque">
                     <mat-error *ngIf="ataque?.invalid && (ataque?.dirty || ataque?.touched)"></mat-error>
                 </mat-form-field>
